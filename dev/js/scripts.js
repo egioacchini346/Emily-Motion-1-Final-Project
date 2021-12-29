@@ -51,7 +51,7 @@ function dot (){
     tl.to("#blue-dot",{opacity: 1, duration: 1})
     tl.to("#yellow-dot",{opacity: 1, duration: 1})
     tl.from("#blue-dot",{opacity: 0, duration: 1})
-    tl.to("#yellow-dot", {opacity: 1, duration: 1, morphSVG:"#top"})
+    tl.to("#yellow-dot", {duration: 1, morphSVG:"#top"})
     return tl; 
 }
 
@@ -67,10 +67,12 @@ function teacup(){
     tl.to("#bottom-stroke",{opacity: 0, duration: 1}, "SAMe")
     tl.to("#back-side-stroke",{opacity: 0, duration: 1}, "SAMe")
     tl.to("#under-side-stroke",{opacity: 0, duration: 1}, "SAMe")
+
     //need to fix rotation & figure out how to get the morphed top to move again
+
     tl.to("#bottom",{rotation:-36, x:1.2, duration: 1}, "SaMee")
-    tl.to("#handle",{rotation:-40, x:-35, y: -20, duration: 1}, "SaMee")
-    tl.to("#top",{rotation:-51, x:-28, y:45, duration: 1}, "SaMee")
+    tl.to("#handle",{rotation:-40, x:-31, y: -18, duration: 1}, "SaMee")
+    tl.to("#yellow-dot",{rotation:-40, duration: 1}, "SaMee")
     tl.to("#shape-covering-d",{opacity: 1},"SaMee")
     return tl; 
 }
@@ -83,7 +85,7 @@ var bBoxGroup2 = liquidlight.getBBox();
 
 function pour(){
     const tl=gsap.timeline(); 
-    tl.from("#tea", {drawSVG:0, duration: 5})
+    tl.from("#tea", {x: -5, drawSVG:0, duration: 5})
     tl.from("#sand-color-tea", {scale: 1.2, drawSVG:0, duration: 5},"SAMME")
     tl.to("#tea",{opacity: 0}, "-=1.2" )
     tl.to("#sand-color-tea",{opacity: 0}, "-=1" )
@@ -95,13 +97,9 @@ function pour(){
     return tl;
 }
 
-
-
-function waves(){
+function notsure(){
     const tl=gsap.timeline();
     //tl.to ("#shape-covering-d", {opacity: 0, duration: 1})
-
-   
     return tl;
 }
 
@@ -117,7 +115,7 @@ mainTL.add(hatbotttom())
 mainTL.add(dot())
 mainTL.add(teacup())
 mainTL.add(pour())
-mainTL.add(waves())
+mainTL.add(notsure())
 mainTL.add(orangebatter())
 
 GSDevTools.create();
