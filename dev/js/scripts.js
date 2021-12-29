@@ -18,11 +18,11 @@ gsap.set("#top",{opacity: 0, transformOrigin:"center"});
 gsap.set("#handle",{opacity: 0, transformOrigin:"center"});
 gsap.set("#bottom",{opacity: 0, transformOrigin:"center"});
 gsap.set("#shape-covering-d",{opacity: 0, transformOrigin:"center"});
-gsap.set("#blocker-to-tea",{opacity: 0, transformOrigin:"center"});
+gsap.set("#liquidmedium",{opacity: 0, scale:2, y:100, transformOrigin:"center"});
+gsap.set("#liquidlight",{opacity: 0, scale: 2, y:120,transformOrigin:"center"});
+gsap.set("#batter",{opacity: 0, transformOrigin:"center"});
 
 const mainTL = gsap.timeline() 
-
-
 
 function ball(){
     const tl=gsap.timeline();
@@ -51,7 +51,7 @@ function dot (){
     tl.to("#blue-dot",{opacity: 1, duration: 1})
     tl.to("#yellow-dot",{opacity: 1, duration: 1})
     tl.from("#blue-dot",{opacity: 0, duration: 1})
-    tl.to("#yellow-dot", {duration: 1, morphSVG:"#top"}, "SAME")
+    tl.to("#yellow-dot", {opacity: 1, duration: 1, morphSVG:"#top"})
     return tl; 
 }
 
@@ -69,29 +69,46 @@ function teacup(){
     tl.to("#under-side-stroke",{opacity: 0, duration: 1}, "SAMe")
     //need to fix rotation & figure out how to get the morphed top to move again
     tl.to("#bottom",{rotation:-36, x:1.2, duration: 1}, "SaMee")
-    tl.to("#handle",{rotation:-45, duration: 1}, "SaMee")
-    tl.to("#top",{rotation:-45, duration: 1}, "SaMee")
+    tl.to("#handle",{rotation:-40, x:-35, y: -20, duration: 1}, "SaMee")
+    tl.to("#top",{rotation:-51, x:-28, y:45, duration: 1}, "SaMee")
     tl.to("#shape-covering-d",{opacity: 1},"SaMee")
     return tl; 
 }
 
+var liquidmedium = document.querySelector("#liquidmedium");
+var liquidlight = document.querySelector("#liquidlight");
+
+var bBoxGroup = liquidmedium.getBBox();
+var bBoxGroup2 = liquidlight.getBBox();
+
 function pour(){
     const tl=gsap.timeline(); 
     tl.from("#tea", {drawSVG:0, duration: 5})
-    tl.from("#sand-color-tea", {scale: 1.2, drawSVG:0, duration: 5})
+    tl.from("#sand-color-tea", {scale: 1.2, drawSVG:0, duration: 5},"SAMME")
+    tl.to("#tea",{opacity: 0}, "-=1.2" )
+    tl.to("#sand-color-tea",{opacity: 0}, "-=1" )
+    tl.to("#blocker-to-tea",{opacity: 1, y:-100, duration: 7}, "SAMME")
+    tl.to("#liquidmedium", {opacity: 4, duration: 1, x: -bBoxGroup.width / 2, ease: "none", repeat: 2}, "SAMME")
+    tl.to("#liquidlight", {opacity: 7, duration: 2, x: bBoxGroup2.width / 2, ease: "none",  repeat: 1}, "SAMME")
+    tl.to("#liquidmedium", {opacity: 4, duration: 4, y:-200}, "SAMME")
+    tl.to("#liquidlight", {opacity: 7, duration: 4, y:-200 }, "SAMME")
     return tl;
 }
 
+
+
 function waves(){
     const tl=gsap.timeline();
-    tl.to ("#shape-covering-d", {opacity: 0, duration: 1})
-    tl.to("#liquid-medium", {duration:.7, x: -bBoxGroup.width / 2, ease: "none", repeat:2}, "start")
-    tl.to("#liquid-light", {duration: .5, x: bBoxGroup2.width / 2, ease: "none", repeat:3}, "start")
+    //tl.to ("#shape-covering-d", {opacity: 0, duration: 1})
 
+   
+    return tl;
+}
 
 function orangebatter(){
     const tl=gsap.timeline(); 
-    tl.to("#batter", {opacity: 0})
+    tl.to("#batter",{opacity: 1})
+    tl.to("#dark-brown-batter", {opacity: 0, duration: 0.7})
     return tl;
 }
 
