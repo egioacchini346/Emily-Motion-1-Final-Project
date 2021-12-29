@@ -464,3 +464,15 @@ textarea {
 #preloader > div svg .hidden {
   display: none;
 }
+#preloader > div svg .top-of-hat {
+  display: none;
+}
+#preloader > div svg .stroke-1 {
+  display: none;
+}
+#preloader > div svg .stroke-2 {
+  display: none;
+}
+#preloader > div svg .bottom-of-hat {
+  display: none;
+}
