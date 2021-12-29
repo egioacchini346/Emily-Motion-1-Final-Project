@@ -18,9 +18,11 @@ gsap.set("#top",{opacity: 0, transformOrigin:"center"});
 gsap.set("#handle",{opacity: 0, transformOrigin:"center"});
 gsap.set("#bottom",{opacity: 0, transformOrigin:"center"});
 gsap.set("#shape-covering-d",{opacity: 0, transformOrigin:"center"});
-
+gsap.set("#blocker-to-tea",{opacity: 0, transformOrigin:"center"});
 
 const mainTL = gsap.timeline() 
+
+
 
 function ball(){
     const tl=gsap.timeline();
@@ -80,13 +82,25 @@ function pour(){
     return tl;
 }
 
+function waves(){
+    const tl=gsap.timeline();
+    tl.to ("#shape-covering-d", {opacity: 0, duration: 1})
+    tl.to("#liquid-medium", {duration:.7, x: -bBoxGroup.width / 2, ease: "none", repeat:2}, "start")
+    tl.to("#liquid-light", {duration: .5, x: bBoxGroup2.width / 2, ease: "none", repeat:3}, "start")
+
+
+function orangebatter(){
+    const tl=gsap.timeline(); 
+    tl.to("#batter", {opacity: 0})
+    return tl;
+}
+
 mainTL.add(ball())
 mainTL.add(hatbotttom())
 mainTL.add(dot())
 mainTL.add(teacup())
 mainTL.add(pour())
+mainTL.add(waves())
+mainTL.add(orangebatter())
 
-    
 GSDevTools.create();
-
-
