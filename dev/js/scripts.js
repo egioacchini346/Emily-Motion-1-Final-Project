@@ -85,8 +85,8 @@ var bBoxGroup2 = liquidlight.getBBox();
 
 function pour(){
     const tl=gsap.timeline(); 
-    tl.from("#tea", {x: -5, drawSVG:0, duration: 5})
-    tl.from("#sand-color-tea", {scale: 1.2, drawSVG:0, duration: 5},"SAMME")
+    tl.from("#tea", {drawSVG:0, duration: 4})
+    tl.from("#sand-color-tea", {scale: 1.2, drawSVG:0, duration: 4},"SAMME")
     tl.to("#tea",{opacity: 0}, "-=1.2" )
     tl.to("#sand-color-tea",{opacity: 0}, "-=1" )
     tl.to("#blocker-to-tea",{opacity: 1, y:-100, duration: 7}, "SAMME")
@@ -97,25 +97,24 @@ function pour(){
     return tl;
 }
 
-function notsure(){
+function returningback(){
     const tl=gsap.timeline();
-    //tl.to ("#shape-covering-d", {opacity: 0, duration: 1})
+    tl.to ("#shape-covering-d", {opacity: 0, duration: 1}, "SamEe")
+    tl.to("#bottom",{rotation:0, duration: 1}, "SamEe")
+    tl.to("#handle",{rotation:0, x:0, y: 0, duration: 1}, "SamEe")
+    tl.to("#yellow-dot",{rotation:0, duration: 1}, "SamEe")
+    tl.to("#batter",{opacity: 1}, "SamEe")
+    tl.to("#dark-brown-batter", {opacity: 0, duration: 0.7}, "SamEe")
     return tl;
 }
 
-function orangebatter(){
-    const tl=gsap.timeline(); 
-    tl.to("#batter",{opacity: 1})
-    tl.to("#dark-brown-batter", {opacity: 0, duration: 0.7})
-    return tl;
-}
 
 mainTL.add(ball())
 mainTL.add(hatbotttom())
 mainTL.add(dot())
 mainTL.add(teacup())
 mainTL.add(pour())
-mainTL.add(notsure())
-mainTL.add(orangebatter())
+mainTL.add(returningback())
+
 
 GSDevTools.create();
