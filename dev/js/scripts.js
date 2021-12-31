@@ -26,9 +26,9 @@ gsap.set("#light-blue-stroke",{opacity: 0, transformOrigin:"center"});
 
 gsap.set(".bubble", {opacity: 0});
 
-
+gsap.set("#A_2",{ x: -1.5, transformOrigin:"center"});
 gsap.set("#M",{opacity: 0, transformOrigin:"center"});
-gsap.set("#A_2",{opacity: 0, transformOrigin:"center"});
+gsap.set("#A_2",{opacity: 0, x: 10, transformOrigin:"center"});
 gsap.set("#D",{opacity: 0, transformOrigin:"center"});
 gsap.set("#sand-colored-tea",{opacity: 0, transformOrigin:"center"});
 
@@ -89,16 +89,10 @@ function ball(){
  tl.fromTo("#teal-outside-stroke", {drawSVG:"100% 0%"}, {duration: 8, drawSVG:"0% 0%"}, "-=8")
 
  tl.to("#end-dot", {opacity: 1, scale: 3})
+
     return tl; 
 }
 
-
-function swirl(){
-    const tl=gsap.timeline();
-    
-    return tl;
-
-}
 
 function dot (){
     const tl=gsap.timeline();
@@ -165,7 +159,7 @@ mainTL.add(ball())
 mainTL.add(dot())
 mainTL.add(teacup())
 mainTL.add(pour())
-mainTL.add(swirl())
+
 
 
 
