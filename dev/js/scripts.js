@@ -21,6 +21,22 @@ gsap.set("#shape-covering-d",{opacity: 0, transformOrigin:"center"});
 gsap.set("#liquidmedium",{opacity: 0, scale:2, y:100, transformOrigin:"center"});
 gsap.set("#liquidlight",{opacity: 0, scale: 2, y:120,transformOrigin:"center"});
 gsap.set("#batter",{opacity: 0, transformOrigin:"center"});
+gsap.set("#teal-stroke",{opacity: 0, transformOrigin:"center"});
+gsap.set("#light-blue-stroke",{opacity: 0, transformOrigin:"center"});
+
+gsap.set(".bubble", {opacity: 0});
+
+
+gsap.set("#M",{opacity: 0, transformOrigin:"center"});
+gsap.set("#A_2",{opacity: 0, transformOrigin:"center"});
+gsap.set("#D",{opacity: 0, transformOrigin:"center"});
+gsap.set("#sand-colored-tea",{opacity: 0, transformOrigin:"center"});
+
+
+gsap.set("#lb-inside-stroke",{opacity: 0, y: 1, x:-10, transformOrigin:"center"});
+gsap.set("#lb-outside-stroke",{opacity: 0, transformOrigin:"center"});
+gsap.set("#teal-inside-stroke",{opacity: 0, transformOrigin:"center"});
+gsap.set("#teal-outside-stroke",{opacity: 0, transformOrigin:"center"});
 
 const mainTL = gsap.timeline() 
 
@@ -31,19 +47,57 @@ function ball(){
     tl.fromTo("#stroke-1", {drawSVG:"50% 50%"}, {duration: .8, drawSVG:"0% 100%"},"-=0.2")
     tl.fromTo("#stroke-2", {drawSVG:"50% 50%"}, {duration: .8, drawSVG:"0% 100%"},"-=0.2")
     tl.to("#ball", {duration: 1, morphSVG:"#top-of-hat"}, "-=1.2")
+
+ //hat
+ tl.to("#bottom-of-hat", {opacity: 1, duration: .30}, "sTARt")
+ tl.to("#stroke-1", {opacity: 0, duration: .80}, "Same")
+ tl.to("#stroke-2", {opacity: 0, duration: .80}, "Same")
+ tl.to("#rectangle-fill", {opacity: 1}, "Same")
+
+ 
+ //swirl strokes
+ tl.from("#proper-teal-inside", {drawSVG:0, duration: 8}, "Start")
+ tl.from("#proper-teal-outside", {drawSVG:0, duration: 8}, "Start")
+ 
+ //bubbles
+ tl.to(".bubble", {duration: .05, opacity: 1, stagger: 0.2}, "sTARt")
+ tl.to(".bubble", {duration: .01, opacity: 0, stagger: 0.2})
+
+ //bottom hat disappearing
+ tl.to("#bottom-of-hat", {opacity: 0}, "-=26")
+ tl.to("#teal-stroke", {opacity: 1},"-=21")
+ 
+
+ tl.from("#proper-lb-outside", {drawSVG:0, duration: 6}, "-=20")
+ tl.to("#light-blue-stroke", {opacity: 1},"-=14")
+ 
+ //strokes leaving
+
+
+ tl.to("#light-blue-stroke", {opacity: 0, duration: 5},"-=8")
+ tl.to("#teal-stroke", {opacity: 0, duration: 5},"-=8")
+
+ tl.to("#proper-teal-inside", {opacity: 0}, "-=10")
+ tl.to("#proper-teal-outside", {opacity: 0},"-=10")
+ tl.to("#proper-lb-outside", {opacity: 0}, "-=10")
+ tl.to("#lb-outside-stroke", {opacity: 1}, "-=10")
+ tl.to("#teal-inside-stroke", {opacity: 1}, "-=10")
+ tl.to("#teal-outside-stroke", {opacity: 1}, "-=10")
+
+ tl.fromTo("#lb-outside-stroke", {drawSVG:"100% 0%"}, {duration: 8, drawSVG:"0% 0%"}, "-=8")
+ tl.fromTo("#teal-inside-stroke", {drawSVG:"100% 0%"}, {duration: 8, drawSVG:"0% 0%"}, "-=8")
+ tl.fromTo("#teal-outside-stroke", {drawSVG:"100% 0%"}, {duration: 8, drawSVG:"0% 0%"}, "-=8")
+
+ tl.to("#end-dot", {opacity: 1, scale: 3})
     return tl; 
 }
 
-function hatbotttom(){
-    const tl=gsap.timeline();
-    tl.to("#bottom-of-hat", {opacity: 1, duration: .30})
 
-    // hat disappears
-    tl.to("#stroke-1", {opacity: 0, duration: .80}, "Same")
-    tl.to("#stroke-2", {opacity: 0, duration: .80}, "Same")
-    tl.to("#bottom-of-hat", {opacity: 0, duration: .80}, "Same")
-    tl.to("#rectangle-fill", {opacity: 1}, "Same")
-    return tl; 
+function swirl(){
+    const tl=gsap.timeline();
+    
+    return tl;
+
 }
 
 function dot (){
@@ -94,27 +148,25 @@ function pour(){
     tl.to("#liquidlight", {opacity: 7, duration: 2, x: bBoxGroup2.width / 2, ease: "none",  repeat: 1}, "SAMME")
     tl.to("#liquidmedium", {opacity: 4, duration: 4, y:-200}, "SAMME")
     tl.to("#liquidlight", {opacity: 7, duration: 4, y:-200 }, "SAMME")
+    //returning back
+    tl.to ("#shape-covering-d", {opacity: 0, duration: .5}, "-=3")
+    tl.to("#bottom",{rotation:0, duration: .5}, "-=3")
+    tl.to("#handle",{rotation:0, x:0, y: 0, duration: .5}, "-=3")
+    tl.to("#yellow-dot",{rotation:0, duration: .5}, "-=3")
+    tl.to("#batter",{opacity: 1}, "-=3")
+    tl.to("#dark-brown-batter", {opacity: 0, duration: 0.2}, "-=3")
     return tl;
 }
 
-function returningback(){
-    const tl=gsap.timeline();
-    tl.to ("#shape-covering-d", {opacity: 0, duration: 1}, "SamEe")
-    tl.to("#bottom",{rotation:0, duration: 1}, "SamEe")
-    tl.to("#handle",{rotation:0, x:0, y: 0, duration: 1}, "SamEe")
-    tl.to("#yellow-dot",{rotation:0, duration: 1}, "SamEe")
-    tl.to("#batter",{opacity: 1}, "SamEe")
-    tl.to("#dark-brown-batter", {opacity: 0, duration: 0.7}, "SamEe")
-    return tl;
-}
 
 
 mainTL.add(ball())
-mainTL.add(hatbotttom())
+
 mainTL.add(dot())
 mainTL.add(teacup())
 mainTL.add(pour())
-mainTL.add(returningback())
+mainTL.add(swirl())
+
 
 
 GSDevTools.create();
